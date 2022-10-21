@@ -1,0 +1,12 @@
+{
+    "activate": [
+        "hey google",
+        "ok google",
+        "siri",
+        "alexa"
+    ],
+    "triggers": {
+        "example": "example",
+        "for example": "example"
+    }
+}
