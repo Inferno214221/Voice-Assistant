@@ -6,12 +6,7 @@ var mic = require("mic");
 const { dir } = require('console');
 const { isBoxedPrimitive } = require('util/types');
 const config = require(cwd + "extensions/config.json");
-const extensions = [];
-fs.readdirSync(cwd + "extensions").filter(function (file) {
-    return fs.statSync(cwd + "extensions/" + file).isDirectory();
-}).forEach(directory => {
-    extensions[directory] = require(cwd + "extensions/" + directory + "/index.js");
-});
+const extensions = []; reloadExtensions();
 
 MODEL_PATH = cwd + "model"
 SAMPLE_RATE = 16000
@@ -88,5 +83,14 @@ function interpret(result) {
         result = result.replace(" " + bestTrigger, "");
     }
 
+    reloadExtensions();
     extensions[config["triggers"][bestTrigger]].run(result);
+}
+
+function reloadExtensions () {
+    fs.readdirSync(cwd + "extensions").filter(function (file) {
+        return fs.statSync(cwd + "extensions/" + file).isDirectory();
+    }).forEach(directory => {
+        extensions[directory] = require(cwd + "extensions/" + directory + "/index.js");
+    });
 }

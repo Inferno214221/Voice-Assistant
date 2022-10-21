@@ -1,12 +1,1 @@
-{
-    "activate": [
-        "hey google",
-        "ok google",
-        "siri",
-        "alexa"
-    ],
-    "triggers": {
-        "example": "example",
-        "for example": "example"
-    }
-}
+{"activate":["hey google","ok google","siri","alexa"],"triggers":{"example":"example","install":"install","for example":"example"}}
